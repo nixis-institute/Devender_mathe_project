@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <title>Billing page</title>
+</head>
+<body>
+    <div>
+        <div style="text-align: center;margin-top: 8px;background: teal;font-weight: bold;">
+            <span style="text-align: center;font-size: 60px;"><a href="/" style="color: black;">MathMadical</a></span>
+        </div>
+            <div>
+                <br>
+                <br>
+                <br>
+                <div style="text-align: center;font-size: 35px;margin-bottom: 10px;">
+                    <h2>Get the bill by entering Saller name</h2>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <form action="/billing/" method="POST">
+                            {% csrf_token %}
+                            <div style="display: flex;margin: auto;width: 45%;">
+                                <input type="search" class="input is-success" name="generat_bill" placeholder="Enter customer name" required>
+                                <button type="submit" class="button is-success" style="margin-left: 5px;">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div>
+                {% if pr %}
+                <!-- <div>
+                    <p>To</p>
+                    <div>
+                        <p>Name</p>
+                        <p>{{bl}}</p>
+                    </div> -->
+                </div>
+                        <section class="section">
+                            <table class="table is-striped" style="width: 100%;">
+                                <thead>
+                                    <tr style="font-weight: bold;font-size: 16px;">
+                                        <td>Name</td>
+                                        <td>Price</td>
+                                        <td>Quantity</td>
+                                        <td>Date</td>
+                                        <td>Total amount</td>
+                                        <td>Saller name</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in pr %}
+                                    <tr>
+                                        <td>{{i.M_name}}</td>
+                                        <td>{{i.M_price}}</td>
+                                        <td>{{i.M_quantity}}</td>
+                                        <td>{{i.M_date}}</td>
+                                        <td>{{i.M_amount}}</td>
+                                        <td>{{i.M_saller}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </section>
+                        
+                        <div>
+                            <section class="section">
+                                <table class="table" style="display: flex;float: right;padding-right: 250px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Total amount</th>
+                                        </tr>
+                                    </thead>
+                                <tbody style="margin-left: 20px;">
+                                    <tr>
+                                        <td>{{sum}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </section>    
+                        </div>
+                    </div> 
+                {% endif %} 
+                
+
+    </div>
+</body>
+</html>

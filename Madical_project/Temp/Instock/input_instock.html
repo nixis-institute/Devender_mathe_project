@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var s = $('#optionID').select();
+            // console.log(s)
+            $('#but_read').click(function(){
+                $('#optionID option:selected').text();
+            })
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <div style="text-align: center;margin-top: 8px;background: teal;font-weight: bold;">
+            <span style="text-align: center;font-size: 60px;"><a href="/" style="color: black;">MathMadical</a></span>
+        </div>
+    
+        <div>
+            <form action="/Product/" method="POST">
+                {% csrf_token %}
+                <div style="margin-top:40px;width: 50%;padding: 29px;">
+                    <div class="field">
+                        <div class="control">
+                            <label >Name</label>
+                            <input type="text" class="input is-success" placeholder="Name of Product" name="name">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label >Price</label>
+                                <input type="text" class="input is-success" placeholder="Price" name="price">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label >Quantity</label>
+                                <input type="text" class="input is-success" placeholder="Qhantity" name="quantity">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label >Name of Company</label>
+                                <input type="text" class="input is-success" placeholder="Name of company" name="quantity">
+                            </div>
+                        </div>
+
+
+                        <div class="field">
+                            <div class="control">
+                                <label >Supplier</la/bel>
+                                <select style="width: 30%;margin-left: 10px;" id="optionID">
+                                    {% for j in D %}
+                                    <option >{{j.N_supplier_name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <!-- <input type='button' id='but_read'> -->
+                                <div id="result"></div>
+                            </div>
+                        </div>
+
+                        <button class="button is-success" style="width: 200px;">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

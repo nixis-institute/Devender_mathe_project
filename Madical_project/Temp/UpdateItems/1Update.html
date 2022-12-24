@@ -1,0 +1,145 @@
+<style>
+    .order_entery{
+        width: 50%;
+        /* line-height: 25px; */
+        padding-left: 18px;
+        line-height: 25px;
+    }
+    </style>
+    
+    
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title>add page</title>
+        <script>
+            $(document).ready(function(){
+                $('.Iswork').mouseenter(function(){
+                    $(this).css({'color':'white','background-color':'teal'});
+                })
+                $('.Iswork').mouseleave(function(){
+                    $(this).css({'color':'black','background-color':'white'});
+                })
+
+                $('.form-group').on('input','.prc',function(){
+                // console.log('It works')
+                var total_sum = 1;
+                    $('.form-group .prc').each(function(){
+                        // console.log('It is working')
+                        var opt = $(this).val();
+                        // console.log(opt)
+                        if($.isNumeric(opt))
+                        {
+                            total_sum*= parseFloat(opt);
+                            // console.log(total_sum)
+                        }
+
+                    })
+                    $('.result').text(total_sum)
+                })
+            })
+        </script>
+    </head>
+    <body bgcolor="whitesmoke">
+    
+            <div style="text-align: center;margin-top: 8px;background: teal;font-weight: bold;">
+                <span style="text-align: center;font-size: 60px;"><a href="/" style="color: black;">MathMadical</a></span>
+            </div>
+            <br>
+            <div>
+                <div>
+                    <form action="/add_p/" style="float: right;padding-right: 10%;">
+                        <button class="button is-success" style="border-radius: 15px;">Add</button>
+                    </form>
+                </div>
+            </div>
+                <div style="padding: 35px;">
+                    <div>
+                        <div class="order_entery" style="width: 80%;">
+                            <form action="/upd/" method="POST">
+                                {% csrf_token %}
+                                <div class="box">
+                                    <div style="display: flex;">
+                                            <div class="field" style="width: 75%;">
+                                                <div class="control">
+                                                    <label for="">Name Madison</label>
+                                                    <input type="hidden" name="id" value="{{V.id}}"/>
+                                                    <input type="text" class="input is-primary" name="name" value="{{V.M_name}}">
+                                                </div>
+                                            </div>
+                                            <div class="field" style="width: 30%;margin-left: 1%;">
+                                                <div class="control form-group">
+                                                    <label for="">Price</label>
+                                                    <input type="text" class="input is-primary prc" name="price" value="{{V.M_price}}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style="display: flex">
+                                            <div class="field" style="width: 50%;">
+                                                <div class="control form-group">
+                                                    <label for="">Quantity</label>
+                                                    <input type="text" class="input is-primary prc" name="quantity" value="{{V.M_quantity}}">
+                                                </div>
+                                            </div>
+                                            <div class="field" style="width: 50%; margin-left: 1%;">
+                                                <div class="control">
+                                                    <label for="">Name of Saller</label>
+                                                    <input type="text" class="input is-primary" name="saller" value="{{V.M_saller}}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style="display: flex;">
+                                            <div class="field" style="width: 50%;">
+                                                <div class="control">
+                                                    <label for="">Name of Company</label>
+                                                    <input type="text" class="input is-primary" name="company" value="{{V.M_comapany}}">
+                                                </div>
+                                            </div>
+                                            <div class="field" style="width: 50%;margin-left:1%;">
+                                                <div class="control form-group">
+                                                    <label for="">Total amount</label>
+                                                    <input type="text" class="input is-primary" name="total_amount" value="{{V.M_amount}}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style="display: flex;">
+                                            <div class="field" style="width: 50%;">
+                                                <div class="control">
+                                                    <label for="">GST Number</label>
+                                                    <input type="text" class="input is-primary" name="gest_number" value="{{V.gst_number}}">
+                                                </div>
+                                            </div>
+                                            <div class="field" style="width: 50%;margin-left:1%;">
+                                                <div class="control">
+                                                    <label for="">Type Company, traders, wholesaler ext.</label>
+                                                    <input type="text" class="input is-primary" name="indus" value="{{V.industry_type}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="field">
+                                                <div class="control">
+                                                    <label for="">Customer name</label>
+                                                    <input type="text" class="input is-primary" name="customer" value="{{V.customer_name}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div>
+                                            <button type="submit" class="button is-primary" style="width: 250px;">Save</button>
+                                        </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+    </body>
+    </html>

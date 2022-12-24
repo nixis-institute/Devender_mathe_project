@@ -1,0 +1,164 @@
+<style>
+.order_entery{
+    width: 80%;
+    /* line-height: 25px; */
+    /* padding-left: 18px; */
+    /* margin: auto; */
+    line-height: 25px;
+}
+.label_work{
+    line-height: 19px;
+}
+/* .nameANDprice{
+    display: flex;
+} */
+</style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>add page</title>
+    <script type="text/javascript" langague='javascript'>
+        
+        $(document).ready(function(){
+            $('.form-group').on('input','.prc',function(){
+                // console.log('It works')
+                var total_sum = 1;
+                $('.form-group .prc').each(function(){
+                    // console.log('It is working')
+                    var opt = $(this).val();
+                    // console.log(opt)
+                    if($.isNumeric(opt))
+                    {
+                        total_sum*= parseFloat(opt);
+                        // console.log(total_sum)
+                    }
+
+                })
+                $('.result').text(total_sum)
+            })
+
+            $(".Isalert").mouseenter(function(){
+                // $(".act").css({'background-color':'teal'})
+                $(this).css({'background-color':'red','color':'white'})
+                // $(this).css({'color':'white'})
+            })
+
+            $(".Isalert").mouseleave(function(){
+                // $(".act").css({'background-color':'white'})
+                $(this).css({'background-color':'white','color':'black'})
+            })
+
+        })
+        // document.getElementsByClassName
+        // document.getElementById
+    </script>
+</head>
+<body>
+
+        <!-- <div style="text-align: center;margin-top: 8px;background: teal;font-weight: bold;">
+            <span style="text-align: center;font-size: 60px;"><a href="/" style="color: black;">MathMadical</a></span>
+        </div> -->
+        
+        <!-- {% block content %}
+        
+        {% endblock %} -->
+
+        <div style="text-align: center;margin-top: 8px;background: teal;font-weight: bold;">
+            <span style="text-align: center;font-size: 60px;"><a href="/" style="color: black;">MathMadical</a></span>
+        </div>
+
+
+        <div style="display: flex; padding: 50px;">
+                <div style="margin-right: 30px;">
+                    <div class="box" style="font-weight: bold;">
+                        <!-- <a href="/add/" class="panel-block is-active Isalert" >Add</a> -->
+                        <!-- <a href="/update/" class="panel-block is-active Isalert">Update</a> -->
+                        <a href="" class="panel-block is-active Isalert">Bill</a>
+                        <a href="/enter_products/" class="panel-block is-active Isalert">Products</a>
+                        <a href="/report/" class="panel-block is-active Isalert">Report </a>
+                    </div>
+                </div>
+
+                    <div class="order_entery" >
+                        <form action="/coming_data/" method="POST">
+                            {% csrf_token %}
+                            <div class="box">
+                                <div style="display: flex;">
+                                    <div class="field" style="width: 68%;margin-right: 15px;">
+                                        <div class="control form-group">
+                                            <label class="label_work">Name Madison</label>
+                                            <input type="text" placeholder="name" class="input is-primary" name="name" required>
+                                        </div>
+                                    </div>
+                                    <div class="field" style="width: 30%;">
+                                        <div class="control form-group">
+                                            <label class="label_work">Price</label>
+                                            <input type="text" placeholder="price" class="input is-primary prc" name="price" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="field" style="width: 35%;">
+                                        <div class="control form-group">
+                                            <label class="label_work">Quantity</label>
+                                            <input type="text" placeholder="quantity" class="input is-primary prc" name="quantity" required>
+                                        </div>
+                                    </div>
+                                    <div class="field" style="width: 63%;margin-left: 15px;">
+                                        <div class="control">
+                                            <label class="label_work">Name of Saller</label>
+                                            <input type="text" placeholder="saller" class="input is-primary" name="saller" required>
+                                        </div>
+                                    </div>    
+                                </div>
+                                <div style="display: flex;">
+                                    <div class="field" style="width: 73%;">
+                                        <div class="control">
+                                            <label class="label_work">Name of Company</label>
+                                            <input type="text" placeholder="comapany" class="input is-primary" name="company" required>
+                                        </div>
+                                    </div>
+                                    <div class="field" style="width: 25%;margin-left: 15px;">
+                                        <div class="control form-group">
+                                            <label class="label_work">Total amount</label>
+                                            <output type="text" placeholder="total_price" class="input is-primary result" name="total" ></output>
+                                        </div>
+                                    </div>    
+                                </div>
+                                <!-- <div style="display: flex;">
+                                    <div class="field" style="width: 45%;">
+                                        <div class="control form-group">
+                                            <label class="label_work">GST Number</label>
+                                            <input type="text" placeholder="GST Number" class="input is-primary result" name="GST_Number" required>
+                                        </div>
+                                    </div>
+                                    <div class="field" style="width: 53%;margin-left: 15px;">
+                                        <div class="control form-group">
+                                            <label class="label_work">Type Company, traders, wholesaler ext.</label>
+                                            <input type="text" placeholder="Type of industry" class="input is-primary result" name="industry" required>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="field" style="width: 50%">
+                                    <div class="control form-group">
+                                        <label class="label_work">Saller name</label>
+                                        <input type="text" placeholder="Customer name" class="input is-primary result" name="Customer" required>
+                                    </div>
+                                </div>
+                                <br>
+                                <div>
+                                    <button type="submit" class="button is-primary" style="width: 30%;">Save</button>
+                                </div>
+                        </div>
+                        </form>
+                    </div>
+        </div>
+</body>
+</html>

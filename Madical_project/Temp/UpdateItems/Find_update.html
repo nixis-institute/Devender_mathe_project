@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Update page</title>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function(){
+            $("#del").click(function(){
+                $("#del").addClass('is-active')
+                $('#deletePopup').addClass('is-active');
+            })
+
+            $('.modal-close').click(function(){
+                $('#deletePopup').removeClass('is-active');
+            })
+
+            $('.close').click(function(){
+                $('#deletePopup').removeClass('is-active');
+            })
+
+        })
+
+    </script>
+</head>
+<body>  
+<style>
+a{
+    text-decoration: none;
+}
+</style>
+
+        <div class="modal" id="deletePopup">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box">
+                    <h2 style="margin-bottom: 6px;font-size: 30px;font-weight: bold;">Do You want to delete it ?</h2>
+                    <div class="columns">
+                        <div class="column is-2">
+                            <button class="button is-danger">
+                                {% for j in data %}
+                                <a href="/delete/{{j.id}}/">Delete</a>
+                                {% endfor %}
+                            </button>
+                        </div>
+                        <div class="column is-2 close">
+                            <button class="button is-primary">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            <!-- Any other Bulma elements you want -->
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+
+
+        <div>
+            <div style="margin: auto;" class="prct">
+                <div style="text-align: center;margin-top: 8px;background: teal;font-weight: bold;">
+                    <span style="font-size: 60px;"><a href="/" style="color: black;">MathMadical</a></span>
+                </div>
+            </div>
+            <br>
+            <br>
+
+             <div>
+                    <div class="field">
+                        <div class="control">
+                            <form action="/find_update/" method="POST">
+                                {% csrf_token %}
+                                <div style="margin: auto;width: 50%;display: flex;">
+                                    <input type="search" class="input is-success" placeholder="Search products by products name or seller name" name="Search" required>
+                                    <button type="submit" class="button is-success" style="margin-left: 5px;">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                <div>
+                    {% if data %}
+                            <div>
+
+                                <section class="section">
+                                    <table class="table is-striped is-fullwidth is-hoverable">
+                                        <thead>
+                                            <tr >
+                                                <th>Product name</th>
+                                                <th>Date</th>
+                                                <th>Company name</th>
+                                                <th>Saller Name</th>
+                                                <th>Update</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in data %}
+                                            <tr>
+                                                <td>{{i.M_name}}</td>
+                                                <td>{{i.M_date}}</td>
+                                                <td>{{i.M_comapany}}</td>
+                                                <td>{{i.M_saller}}</td>
+                                                <td> <a href="/update/{{i.id}}/"> <i class='fas fa-pencil-alt' style='font-size:18px;'>
+                                                                                </i> 
+                                                    </a> 
+                                                </td>
+                                                <td style="color: red;" id="del"><i class="fas fa-trash-alt"></i> </td>
+                                            {% endfor %}
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+                            </div>
+                        
+                        <div>
+                            {% elif sel %}
+                            <div>
+                                <section class="section">
+                                    <table class="table is-fullwidth is-hoverable">
+                                        <thead>
+                                            <tr>
+                                                <th>Product name</th>
+                                                <th>Date</th>
+                                                <th>Company name</th>
+                                                <th>Saller Name</th>
+                                                <th>Update</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% for i in sel %}
+                                                    <tr>
+                                                        <td>{{i.M_name}}</td>
+                                                        <td>{{i.M_date}}</td>
+                                                        <td>{{i.M_comapany}}</td>
+                                                        <td>{{i.M_saller}}</td>
+                                                        <td> <a href="/update/{{i.id}}/"> <i class='fas fa-pencil-alt' style='font-size:18px;'>
+                                                                                        </i> 
+                                                            </a> 
+                                                        </td>
+                                                        <td style="color: red;"><i class="fas fa-trash-alt" id="del"></i> </td>
+                                                    {% endfor %}
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </section>
+                            </div>
+                        </div>
+
+                    {% else %}
+                    <div style="text-align: center;font-size: 25px;font-weight: bold;">
+                        <br>
+                        <br>
+                        <h2>Result is not fund....</h2>
+                    </div> 
+
+            {% endif %}
+            </div>   
+        </div>
+                
+</body>
+</html>

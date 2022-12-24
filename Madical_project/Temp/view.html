@@ -1,0 +1,247 @@
+<style>
+/* .artclass{ */
+    
+.NameOFproduct{
+    /* padding-left: 230px; */
+    width: 100%;
+    /* margin: auto; */
+    /* font-size: 35px; */
+    font-weight: bold;
+}
+.TitleOFproduct{
+    width: 74%;
+    /* font-size: 25px; */
+    font-weight: bold;
+}
+/* .Heading{
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 2px;
+    margin-bottom: 5px;
+} */
+
+a{
+    text-decoration: none;
+}
+.width_form{
+    padding-left: 23px;
+    width: 100%;
+}
+</style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <title>View page</title>
+</head>
+<body>
+    
+<script language="javascript" type="text/javascript">
+
+/*    var del = document.getElementById("Del")
+    if(del.onclick())
+    {
+        console.log("clicked")
+    }
+*/
+        //     $(document).ready(function(){
+        //     $('.form-group').on('input','.prc',function(){
+        //         // console.log('It works')
+        //         var total_sum = 1;
+        //         $('.form-group .prc').each(function(){
+        //             console.log('It is working')
+        //             var opt = $(this).val();
+        //             // console.log(opt)
+        //             if($.isNumeric(opt))
+        //             {
+        //                 total_sum*= parseFloat(opt);
+        //                 // console.log(total_sum)
+        //             }
+
+        //         })
+        //         $('.result').text(total_sum)
+        //     })
+
+        // }
+
+
+    $(document).ready(()=>{
+        $("#Del").click(()=>{
+//        console.log("clicked")
+        $("#deletePopup").addClass("is-active")
+        $("#Del").addClass('is-active')
+        //$(".modal-close").removeClass("is-active")
+    })
+
+    $(".modal-close").click(()=>{
+        $("#deletePopup").removeClass("is-active")
+    })
+    
+    $(".close").click(()=>{
+        $("#deletePopup").removeClass("is-active")
+    })
+
+
+    // $("#report").click(function(){
+    //     $("#report").addClass("is-active")
+    // })
+
+        $(".Isalert").mouseenter(function(){
+            $(this).css({'background-color':'teal','color':'white'})
+        })
+
+        $(".Isalert").mouseleave(function(){
+            $(this).css({'background-color':'white','color':'black'})
+        })
+
+        $(".form-group").on("span",".prc",function(){
+            console.log("Cehcking")
+        })
+        // $('.form-group').on('span','.prc',function(){
+        //         console.log('It works')
+            //     var total_sum = 1;
+            //     $('.form-group .prc').each(function(){
+            //         console.log('It is working')
+            //         var opt = $(this).val();
+            //         // console.log(opt)
+            //         if($.isNumeric(opt))
+            //         {
+            //             total_sum*= parseFloat(opt);
+            //             // console.log(total_sum)
+            //         }
+
+            //     })
+            //     $('.result').text(total_sum)
+            // })
+        // })
+
+
+    })
+
+
+</script>
+
+    <div class="modal" id="deletePopup">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
+                <h2 style="margin-bottom: 6px;font-size: 30px;font-weight: bold;">Do You want to delete it ?</h2>
+                <div class="columns">
+                    <div class="column is-2">
+                        <button class="button is-danger">
+                            <a href="/delete/{{D.id}}/">Delete</a>
+                        </button>
+                    </div>
+                    <div class="column is-2 close">
+                        <button class="button is-primary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        <!-- Any other Bulma elements you want -->
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+        {% block content %}
+        <div style="text-align: center;margin-top: 8px;background: teal;font-weight: bold;">
+            <span style="text-align: center;font-size: 60px;"><a href="/" style="color: black;">MathMadical</a></span>
+        </div>
+        {% endblock %}
+        
+    <br>
+    <br>
+        <article class="panel is-primary is-striped" style="width: 1274px;margin: auto;">
+            <p class="panel-heading is-large">View</p>
+                <p class="panel-tabs" style="font-size: 19px;font-weight: bold;">
+                    <a  id="Del" class="is-active Isalert"> Delete</a>
+                    <a  class="is-active Isalert" href="/update/{{D.id}}/"> Update</a>
+                    <a  class="is-active Isalert" href="/addblock/"> Add</a>
+                    <a href="/report/" class="is-active Isalert">Report</a>
+                
+                </p>
+                <a class="panel-block is-active form-group">
+                    <div class="TitleOFproduct">
+                        <span class="input is-primary prc">Name:</span>
+                    </div>
+                    <div class="NameOFproduct width_form" >
+                        <span class="input is-primary prc">{{D.M_name}}</span>
+                    </div>
+                </a>
+                <a class="panel-block is-active form-group">
+                    <div class="TitleOFproduct">
+                        <span class="input is-primary prc">Price:</span>
+                    </div>
+
+                    <div class="NameOFproduct width_form"> 
+                        <span class="NameOFproduct prc input is-primary prc">{{D.M_price}}</span>
+                    </div>
+                </a>
+                <a class="panel-block is-active form-group">
+                    <div class="TitleOFproduct">
+                        <span class="TitleOFproduct input is-primary prc">Quantity:</span>
+                    </div>
+                    <div class="NameOFproduct width_form">
+                        <span class="NameOFproduct prc input is-primary prc">{{D.M_quantity}}</span>
+                    </div>
+                </a>
+                <a class="panel-block is-active form-group">
+                    <div class="TitleOFproduct">
+                        <span class="TitleOFproduct input is-primary prc">Saller</span>
+                    </div>
+                    <div class="NameOFproduct width_form">
+                        <span class="NameOFproduct input is-primary prc">{{D.M_saller}}</span>
+                    </div>
+                </a>
+                <a class="panel-block is-active form-group">
+                    <div class="TitleOFproduct">
+                        <span class="TitleOFproduct input is-primary prc">Name of Company</span>
+                    </div>
+                    <div class="NameOFproduct width_form">
+                        <span class="NameOFproduct input is-primary prc">{{D.M_comapany}}</span>
+                    </div>
+                </a>
+                <a class="panel-block is-active form-group">
+                    <div class="TitleOFproduct">
+                        <span class="TitleOFproduct input is-primary prc">Total amount</span>
+                    </div>
+                    <div class="NameOFproduct width_form">
+                        <span class="NameOFproduct result input is-primary prc">{{D.M_amount}}</span>
+                    </div>
+                </a>
+                <a class="panel-block is-active form-group">
+                    <div class="TitleOFproduct">
+                        <span class="TitleOFproduct input is-primary prc">Date  Time</span>
+                    </div>
+                    <div class="NameOFproduct width_form">
+                        <span class="NameOFproduct input is-primary prc">{{D.M_date}}</span>
+                    </div>
+                </a>
+                <!-- <a class="panel-block is-active form-group">
+                    <span class="TitleOFproduct">GST Number</span>
+                    <span class="NameOFproduct">{{D.gst_number}}</span>
+                </a>
+                <a class="panel-block is-active form-group">
+                    <span class="TitleOFproduct">Industry type</span>
+                    <span class="NameOFproduct">{{D.industry_type}}</span>
+                </a> -->
+                <a class="panel-block">
+                    <div class="TitleOFproduct">
+                        <span class="TitleOFproduct input is-primary prc">Customer name</span>
+                    </div>
+                    <div class="NameOFproduct width_form">
+                        <span class="NameOFproduct input is-primary prc">{{D.customer_name}}</span>
+                    </div>
+                </a>
+
+        </article>
+        <br>
+        <br>
+</body>
+</html>

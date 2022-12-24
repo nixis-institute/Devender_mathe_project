@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <title></title>
+
+</head>
+<body>
+    <div>
+        <div style="margin: auto;">
+            <div style="text-align: center;margin-top: 8px;background: teal;font-weight: bold;">
+                <span style="font-size: 60px;color: black;">MathMadical</span>
+            </div>
+        </div>
+
+        <div>
+            {% if product %}
+            <div style="margin-left: 20px;width: 100%;">
+                <section>
+                        <div class="container"> 
+                            <table class="table is-fullwidth is-hoverable">
+                                <thead>
+                                    <tr>
+                                        <th>Name of Product</th>
+                                        <th>Date</th>
+                                        <th>Company Name</th>
+                                        <th>Total amount</th>
+                                        <th>Customer name</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for i in product%}
+                                    <tr>
+                                        <td><a href="/see/{{i.id}}/">{{i.M_name}}</a></td>
+                                        <td>{{i.M_date}}</td>
+                                        <td>{{i.M_saller}}</td>
+                                        <td>{{i.M_amount}}</td>
+                                        <td>{{i.customer_name}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

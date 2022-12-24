@@ -1,0 +1,138 @@
+<style>
+.heading{
+    font-size: 16px;
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link rel="stylesheet" href="file:///home/devender/Desktop/practice/django/Medical/Madical_project/fontawesome-free-5.14.0-web/css/all.css">
+    <!-- <link rel="stylesheet" href="jquery-ui.min.css"> -->
+    <!-- <script src="jquery-ui.min.js"></script> -->
+    <title>Report page</title>
+    
+    <script type='text/javascript'>
+        // $(document).ready(function(){
+        //     $('#pickdate').datepiker();
+        // })
+    </script>
+    
+</head>
+<body>
+        <div>
+            <div style="margin: auto;">
+                <div style="text-align: center;margin-top: 8px;background: teal;font-weight: bold;">
+                    <span style="font-size: 60px;"><a href="/" style="color: black;">MathMadical</a></span>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div>
+                <div style="text-align: center;margin-bottom: 15px;font-size: 33px;">
+                    <h2>Find report by dates. Start date and End date</h2>
+                </div>
+            </div>
+            <div class="form-control" style="text-align: center;">
+                <form action="/get_report/" method="POST">
+                {% csrf_token %}
+                <div>
+                    <div>
+                        <div class="field" style="width: 30%;margin: auto;">
+                            <div class="control">
+                                <input type="date" class="input is-primary" name="start_date" required>
+                            </div>
+                        </div>
+                        <div>
+                            <p style="font-size: 15px;"><strong>To</strong></p>
+                        </div>
+                        <div>
+                            <div class="field" style="width: 30%;margin: auto;">
+                                <div class="control">
+                                    <input type="date" class="input is-primary" name="end_date" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 8px;">
+                            <button type="submit" class="button is-primary" style="width: 15%;">Check</button>
+                            <!-- <input type="button" value="Check"> -->
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div> 
+            
+            <div>
+                {% if data %}
+                    <div>
+                        
+                        {% if data %}
+                            <div style="float: right;padding-right: 6%;">
+                                {% if DF %}
+                                    <button class="button is-success"><i class="fa fa-download">download</i></button>
+                                {% else %}
+                                <button class="button is-success"><i class="fa fa-download">download</i></button>
+                                {% endif %}
+                            </div>
+                            <br>
+                            <br>
+                            <div>
+                                <p style="padding-left: 36px;font-size: 21px;"> <strong>Report</strong> : {{start}} <strong>TO</strong> {{end}}</p>
+                            </div>
+
+                            <div>
+                                <section class="section">
+                                    <table class="table is-fullwidth is-hoverable">
+                                        <thead>
+                                            <tr>
+                                                <th>Product name</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Date</th>
+                                                <th>Company name</th>
+                                                <th>Saller Name</th>
+                                                <th>Amount</th>
+                                                <!-- <th>Update</th>
+                                                <th>Delete</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in data %}
+                                            <tr>
+                                                <td>{{i.M_name}}</td>
+                                                <td>{{i.M_price}}</td>
+                                                <td>{{i.M_quantity}}</td>
+                                                <td>{{i.M_date}}</td>
+                                                <td>{{i.M_comapany}}</td>
+                                                <td>{{i.M_saller}}</td>
+                                                <td>{{i.M_amount}}</td>
+                                                <!-- <td> <a href="/update/{{i.id}}/" style="color:blue;"><i class="fas fa-pencil"></i></a> </td>
+                                                <td> <i class="far fa-trash-alt"></i> </td> -->
+                                            {% endfor %}
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+                                <div style="display: flex;float: right;padding-right: 6.5%;">
+                                    <h3 style="padding-right: 10px;color: black;font-weight: bold;">Total Amount</h3>
+                                    <p style="font-weight: bold;color: black;">{{sum}}</p>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                            {% else %}
+                            <div>
+                                <h2>No result found</h2>
+                            </div>
+                            {% endif %}
+                    </div>
+                        
+                {% endif %}
+                </div>
+            </div>
+        </body>
+        </html>

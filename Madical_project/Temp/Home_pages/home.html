@@ -1,0 +1,178 @@
+<style>
+.atributes{
+    float: right;
+    display: flex;
+    flex-flow: row;
+    padding: 26px;
+    padding-right: 23px;
+    /* padding-left: 130px; */
+}
+.atributes div{
+    padding-right: 30px;
+    font-size: 27px;
+    font-weight: bold
+}
+a{
+    text-decoration: none;
+}
+.manu{
+    width: 306px;
+    height: 66px;
+    border: 2px solid grey;
+    margin: auto;
+    border-radius: 5px;
+    margin-top: 50px;
+}
+.c{
+    width: 100%;
+    border-top: 3px solid gray;
+}
+a{
+    text-decoration: none;
+}
+.order_entery{
+    width: 664px;
+    margin-top: 70px;
+    padding: 20px;
+}
+.all_names{
+    display: flex;
+    border: 2px solid grey;
+    border-radius: 27px;
+    box-shadow: 3px 1px 6px teal;
+    width: 1009px;
+    /* margin-bottom: 10px; */
+    margin: auto;
+    /* display: flex; */
+    /* margin: 10px;
+    margin: auto; */
+}
+.only_name{
+    font-size: 70px;
+}
+.border_bottom{
+border-bottom: 1px solid grey;
+font-size: 30px;
+}
+.search{
+    float: right;
+    justify-content: center;
+    text-align: initial;
+    margin-top: 16px;
+    margin-right: 13px;
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta charset="UTF-8"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Home page</title>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.act').click(function(){
+                $('.act').addClass('is-active')
+            })
+
+            $(".act").mouseenter(function(){
+                // $(".act").css({'background-color':'teal'})
+                $(this).css({'background-color':'red','color':'white'})
+                // $(this).css({'color':'white'})
+            })
+
+            $(".act").mouseleave(function(){
+                // $(".act").css({'background-color':'white'})
+                $(this).css({'background-color':'white','color':'black'})
+            })
+
+            
+        })
+    </script>
+
+</head>
+<body >
+    <div>
+            <div style="margin: auto;">
+                <div style="text-align: center;margin-top: 8px;background: teal;font-weight: bold;">
+                    <span style="font-size: 60px;color: black;">MathMadical</span>
+                </div>
+            </div>
+            <!-- <form action="/direct_home/" method="POST">
+                {% csrf_token %}
+                <input type="text" class="input is-success" name="find_by" required>
+                <button class="button is-success">Search</button>
+            </form> -->
+            <div>
+                <form action="/search/" method="GET" class="search">
+                    {% csrf_token %}
+                    <input type="text"  name="search_item" placeholder="Seach by Name">
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+                    <div style="display:flex;padding: 50px;visibility: visible;">
+        
+                        <div>
+                            <div class="box is-striped" style="font-weight: bold;">
+                                <a href="/add_p/" class="panel-block act" >Add</a>
+                                <!-- {% for i in data%} -->
+                                    <!-- <a href="/updateData/" class="panel-block act ">Update</a> -->
+                                <!-- {% endfor %} -->
+                                <a href="/bill/" class="panel-block act">Bill</a>
+                                <a href="/enter_products/" class="panel-block act">Products</a>
+                                <a href="/report/" class="panel-block act">Report</a>
+                            </div>
+                        </div>
+
+                        <div style="margin-left: 20px;width: 100%;">
+                            <section>
+                                    <div class="container"> 
+                                        <table class="table is-fullwidth is-hoverable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name of Product</th>
+                                                    <th>Date</th>
+                                                    <th>Company Name</th>
+                                                    <th>Total amount</th>
+                                                    <th>Saller name</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                    {% if data %}
+                                                            {% for i in data %}
+                                                                <tr>
+                                                                    <td><a href="/see/{{i.id}}/">{{i.M_name}}</a></td>
+                                                                    <td>{{i.M_date}}</td>
+                                                                    <td>{{i.M_saller}}</td>
+                                                                    <td>{{i.M_amount}}</td>
+                                                                    <td>{{i.customer_name}}</td>
+                                                                </tr>
+                                                            {% endfor %}
+                                                    {% endif %}
+                                                    {% if data1 %}
+                                                        {% for i in data1%}
+                                                            <tr>
+                                                                <td><a href="/see/{{i.id}}/">{{i.M_name}}</a></td>
+                                                                <td>{{i.M_date}}</td>
+                                                                <td>{{i.M_saller}}</td>
+                                                                <td>{{i.M_amount}}</td>
+                                                                <td>{{i.customer_name}}</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </section>
+                        </div>
+                    </div>
+    </div>
+
+</body>
+</html>
